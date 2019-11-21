@@ -1,0 +1,31 @@
+CREATE TABLE IF NOT EXISTS `mavoix`.`patient` (
+  `pt_id` VARCHAR(5) NOT NULL,
+  `mob_number` VARCHAR(45) NOT NULL,
+  `reg_date` VARCHAR(45) NOT NULL,
+  `reg_time` VARCHAR(45) NULL DEFAULT NULL,
+  `pt_name` VARCHAR(45) NOT NULL,
+  `gender` VARCHAR(45) NOT NULL,
+  `age` INT(11) NOT NULL,
+  `location` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`pt_id`))
+  
+  CREATE TABLE IF NOT EXISTS `mavoix`.`appointment` (
+  `apn_id` VARCHAR(45) NOT NULL,
+  `pt_id` VARCHAR(5) NULL DEFAULT NULL,
+  `apn_date` VARCHAR(45) NULL DEFAULT NULL,
+  `apn_time` VARCHAR(45) NULL DEFAULT NULL,
+  `dr_name` VARCHAR(45) NULL DEFAULT NULL,
+  `lab_test_status` VARCHAR(45) NULL DEFAULT NULL,
+  `type` VARCHAR(45) NULL DEFAULT NULL,
+  `payment_status` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`apn_id`),
+  INDEX `pt_id` (`pt_id` ASC) VISIBLE,
+  CONSTRAINT `pt_id`
+    FOREIGN KEY (`pt_id`)
+    REFERENCES `mavoix`.`patient` (`pt_id`))
+CREATE TABLE IF NOT EXISTS `mavoix`.`apn` (
+  `apn_date` VARCHAR(45) NOT NULL,
+  `apn_id` VARCHAR(45) NULL DEFAULT NULL,
+  `dr_name` VARCHAR(45) NULL DEFAULT NULL,
+  `pt_name` VARCHAR(45) NULL DEFAULT NULL,
+  `apn_time` VARCHAR(45) NULL DEFAULT NULL)
